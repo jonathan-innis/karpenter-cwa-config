@@ -1,0 +1,20 @@
+global:
+  scrape_interval: 1m
+  scrape_timeout: 10s
+scrape_configs:
+- job_name: karpenter
+  sample_limit: 10000
+  metrics_path: /metrics
+  kubernetes_sd_configs:
+  - role: pod
+    namespaces:
+      names:
+      - kube-system
+  relabel_configs:
+  - source_labels: [__meta_kubernetes_pod_label_app_kubernetes_io_name]
+    action: keep
+    regex: 'karpenter'
+  metric_relabel_configs:
+  - source_labels: [__name__]
+    action: keep
+    regex: 'karpenter\_.*'

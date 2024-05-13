@@ -1,0 +1,22 @@
+{
+    "logs": {
+      "metrics_collected": {
+        "prometheus": {
+          "prometheus_config_path": "/etc/prometheusconfig/prometheus.yaml",
+          "emf_processor": {
+            "metric_declaration": [
+              {
+                "source_labels": ["container_name"],
+                "label_matcher": ".*karpenter.*",
+                "dimensions": [["Service","Namespace","ClusterName","version","goversion","goarch","commit"]],
+                "metric_selectors": [
+                  "^karpenter_build_info$"
+                ]
+              }
+            ]
+          }    
+      },
+      "force_flush_interval": 5
+    }
+  }
+}

@@ -1,0 +1,2 @@
+kubectl create configmap prometheus-cwagentconfig -n kube-system --from-file=cwagent -o yaml --dry-run=client | kubectl apply -f -
+kubectl create configmap prometheus-config -n kube-system --from-file=prometheus -o yaml --dry-run=client | kubectl apply -f -
